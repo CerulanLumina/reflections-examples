@@ -4,6 +4,7 @@ public class ReflectionDemo1 {
 
     public static void main(String... args) {
         var console = System.console();
+        //noinspection InfiniteLoopStatement
         while (true) {
             System.out.print("Enter a method to run: ");
             var input = console.readLine();

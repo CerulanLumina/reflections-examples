@@ -1,20 +1,40 @@
 import java.lang.reflect.Field;
 
+/**
+ * Basic class for properties and functions for Animals
+ */
 class Animal {
+    /**
+     * An animal's voice.
+     * Once an animal is defined, their voice cannot change.
+     * Java Strings are immutable, and setting this to final will ensure that.
+     */
     private final String voice;
+
+    /**
+     * Create an animal with the specified voice
+     * @param voice The voice for an animal
+     */
     public Animal(String voice) {
         this.voice = voice;
     }
 
+    /**
+     * Instruct the animal to say hello to the console using its voice.
+     */
     public void sayHello() {
         System.out.println(voice);
     }
+
+    // Needed for non-compile java. it looks at first class in file and i don't want to move it
+    public static void main(String[] args) { ReflectionDemo2.main(args); }
 }
 
 public class ReflectionDemo2 {
 
     public static void main(String... args) {
 
+        // Set up our wonderful animals
         Animal cat = new Animal("meow");
         Animal dog = new Animal("woof");
 
@@ -23,6 +43,7 @@ public class ReflectionDemo2 {
         Animal person2 = new Animal(personVoice);
 
         try {
+            // Use black magic to read a private field
             Field field = Animal.class.getDeclaredField("voice");
             field.setAccessible(true);
 
